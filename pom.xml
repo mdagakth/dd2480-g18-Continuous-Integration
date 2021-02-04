@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>group18</groupId>
-  <artifactId>decide</artifactId>
+  <artifactId>ci</artifactId>
   <version>1.0</version>
 
-  <name>decide</name>
-  <url>https://github.com/martinfalke/dd2480-g18-decide</url>
+  <name>ci</name>
+  <url>https://github.com/martinfalke/dd2480-g18-Continuous-Integration/</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,7 +35,28 @@
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+
+      <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+      <dependency>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-server</artifactId>
+        <version>7.0.2.v20100331</version>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+      </dependency>
+
+
+    </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
