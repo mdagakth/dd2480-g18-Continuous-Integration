@@ -38,7 +38,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
     public static void main(String[] args) throws Exception {
         jsonHandeler jsonHandeler = new jsonHandeler();
         BuildHistory db = jsonHandeler.readBuildHistory();
-        db.buildHistory.remove(0);
+
         jsonHandeler.saveBuildHistory(db);
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());
