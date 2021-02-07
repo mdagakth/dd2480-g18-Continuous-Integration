@@ -1,19 +1,17 @@
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+
 
 import java.io.*;
 
-public class jsonHandeler {
+public class jsonHandler {
     private Gson gson;
     private String filePath;
 
-    public jsonHandeler(){
+    public jsonHandler(){
         gson = new Gson();
         filePath = "src/main/resources/BuildHistoryDB.json";
     }
-    public jsonHandeler(String filePath){
+    public jsonHandler(String filePath){
         gson = new Gson();
         this.filePath = filePath;
     }
@@ -23,7 +21,7 @@ public class jsonHandeler {
         Gson gson = new Gson();
         try (Reader reader = new FileReader(filePath)) {
 
-            // Convert JSON File to BuildHistory boject
+            // Convert JSON File to BuildHistory object
             db = gson.fromJson(reader, BuildHistory.class);
 
         } catch (IOException e) {

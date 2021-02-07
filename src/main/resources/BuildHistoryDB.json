@@ -1,13 +1,13 @@
 {
   "buildHistory": [{
-    "commitID": "68b29c290797c5120e0a0f4d4f280c39f5eabb05",
+    "buildID": 1,
     "buildResult": {
-      "buildSucessfull":true,
+      "buildSuccessfull":true,
       "buildLogs": "The build was successfull"
     },
     "testResult": {
-      "buildSucessfull":true,
-      "buildLogs": "Successfull on 32 out of 32 tests"
+      "testSuccessfull":true,
+      "testLogs": "Successfull on 32 out of 32 tests"
     },
     "rawGithubLogs": {
       "ref": "refs/heads/Kalle-#15-JSONpersistant-feat",
@@ -210,14 +210,14 @@
     }
   },
     {
-      "commitID": "68b29c290797c5120e0a0f4d4f280c39f5eabb05",
+      "buildID": 2,
       "buildResult": {
-        "buildSucessfull":true,
+        "buildSuccessfull":true,
         "buildLogs": "The build was successfull"
       },
       "testResult": {
-        "buildSucessfull":true,
-        "buildLogs": "Successfull on 32 out of 32 tests"
+        "testSuccessfull":true,
+        "testLogs": "Successfull on 32 out of 32 tests"
       },
       "rawGithubLogs": {
         "ref": "refs/heads/Kalle-#15-JSONpersistant-feat",

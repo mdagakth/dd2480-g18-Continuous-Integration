@@ -36,10 +36,9 @@ public class ContinuousIntegrationServer extends AbstractHandler {
 
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception {
-        jsonHandeler jsonHandeler = new jsonHandeler();
-        BuildHistory db = jsonHandeler.readBuildHistory();
+        jsonHandler jsonHandler = new jsonHandler();
+        BuildHistory db = jsonHandler.readBuildHistory();
 
-        jsonHandeler.saveBuildHistory(db);
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());
         server.start();

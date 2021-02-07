@@ -1,13 +1,11 @@
-
-
 public class Build {
-    private String commitID;
+    private int buildID;
     private buildResult buildResult;
     private testResult testResult;
     private Object rawGithubLogs;
 
-    public Build(String commitID, buildResult buildResult, testResult testResult, Object rawGithubLogs) {
-        this.commitID = commitID;
+    public Build(int buildID, buildResult buildResult, testResult testResult, Object rawGithubLogs) {
+        this.buildID = buildID;
         this.buildResult = buildResult;
         this.testResult = testResult;
         this.rawGithubLogs = rawGithubLogs;
@@ -38,12 +36,12 @@ public class Build {
         this.rawGithubLogs = rawGithubLogs;
     }
 
-    public String getCommitID() {
-        return commitID;
+    public int getBuildID() {
+        return buildID;
     }
 
-    public void setCommitID(String commitID) {
-        this.commitID = commitID;
+    public void setBuildID(int buildID) {
+        this.buildID = buildID;
     }
 }
 
