@@ -29,13 +29,15 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         System.out.println(target);
         System.out.println("got a catch");
 
-
-        response.getWriter().println("Pull received");
-
-        data = baseRequest.getReader().lines().collect(Collectors.joining());
-        RequestHandler a = new RequestHandler();
-        a.data = data;
-        a.run();
+        if (baseRequest.getMethod().equals("POST")) {
+            response.getWriter().println("POST received");
+            if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
+                data = baseRequest.getReader().lines().collect(Collectors.joining());
+                RequestHandler a = new RequestHandler();
+                a.data = data;
+                a.run();
+            }
+        }
     }
 
     // used to start the CI server in command line
