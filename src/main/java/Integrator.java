@@ -10,23 +10,32 @@ import java.util.Stack;
 
 public class Integrator {
 
-    // used as keys for the statuses of an integration attempt
+    // used as keys for the statuses of an integration attempt, the K in K,V
     public final static String STATUS_INSTALL = "INSTALL";
     public final static String STATUS_COMPILE = "COMPILE";
     public final static String STATUS_TEST = "TEST";
+    // used as constant values for the resulting statuses, the V in K,V
+    public final static String STATUS_SUCCESS = "SUCCESS";
+    public final static String STATUS_FAILURE = "FAILURE";
 
     public static void main(String[] args){
         // example code to show usage without changing main file
 
         String target = "/";
-        String commitedBranch = "oscar-#5-gitignore-fix";
-        String commitHash = "45a1d97";
+        String commitedBranch = "TEST_total_success";
+        String commitHash = "117f7fb";
         Map<String, String> statuses = null;
         if(target.equals("/"))
             statuses = Integrator.integrateBuild(commitedBranch, commitHash);
         System.out.println("Install status: " + statuses.get(STATUS_INSTALL)); // status of installing dependencies
         System.out.println("Compile status: " + statuses.get(STATUS_COMPILE)); // status of compiling build
         System.out.println("Install status: " + statuses.get(STATUS_TEST)); // status of unit tests
+        if(statuses.get(STATUS_TEST).equals(STATUS_SUCCESS)){
+            System.out.println("Tests succeeded, all good :)");
+        }
+        if(statuses.get(STATUS_COMPILE).equals(STATUS_FAILURE)){
+            System.out.println("Building/compiling failed, tests should not succeed");
+        }
     }
 
     /**
