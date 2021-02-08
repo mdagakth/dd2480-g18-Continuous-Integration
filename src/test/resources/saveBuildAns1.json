@@ -1,0 +1,23 @@
+{
+  "buildHistory": [
+    {
+      "buildID": 1,
+      "installResult": {
+        "installSuccessfull": true,
+        "installLogs": "The install was successfull",
+        "rawInstallLogs": "raw install logs"
+      },
+      "buildResult": {
+        "buildSuccessfull": true,
+        "buildLogs": "The build was successfull",
+        "rawBuildLogs": "raw build logs"
+      },
+      "testResult": {
+        "testSuccessfull": true,
+        "testLogs": "Successfull on 32 out of 32 tests",
+        "rawTestLogs": "raw test logs"
+      },
+      "rawGithubLogs": "rawLogs"
+      }
+  ]
+}
