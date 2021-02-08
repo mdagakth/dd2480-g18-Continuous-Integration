@@ -2,6 +2,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 import org.eclipse.jetty.server.Server;
@@ -68,7 +69,19 @@ public class ContinuousIntegrationServer extends AbstractHandler {
      */
     private void build(Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("Something got pushed");
-        response.getWriter().write("wow, some thing happened!");
+        BufferedReader requestReader = request.getReader();
+        String line;
+        while ((line = requestReader.readLine()) != null) {
+            System.out.println(line);
+        }
+        /*
+         * send request to GitHub to mark commit as pending
+         * clone repo
+         * run tests
+         * save results
+         * send request to GitHub to mark commit with test results
+         */
+        response.getWriter().write("wow, something happened!");
     }
 
     /**
@@ -82,6 +95,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
     private void search(String buildID, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
         /*
          * Fetch the correct build information file
+         * Serve information if it exists, otherwise show some 404-page
          */
         // boolean found = <build file exists>;
         boolean found = buildID.equals("1");
