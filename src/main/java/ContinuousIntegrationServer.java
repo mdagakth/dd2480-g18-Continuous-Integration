@@ -39,6 +39,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         jsonHandler jsonHandler = new jsonHandler();
         BuildHistory db = jsonHandler.readBuildHistory();
 
+
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());
         server.start();

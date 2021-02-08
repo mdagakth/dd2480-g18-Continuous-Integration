@@ -7,7 +7,7 @@ public class BuildHistory {
         this.buildHistory = buildHistory;
     }
     public BuildHistory(){
-        buildHistory = null;
+        buildHistory = new ArrayList<Build>();
     }
 
     /**
