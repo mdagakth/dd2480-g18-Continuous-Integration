@@ -3,7 +3,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
  
 import java.io.IOException;
- 
+import java.util.stream.Collectors;
+import java.lang.Thread;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -13,7 +15,7 @@ import org.eclipse.jetty.server.handler.AbstractHandler;
  See the Jetty documentation for API documentation of those classes.
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
-
+    String data;
 
     public void handle(String target,
                        Request baseRequest,
@@ -25,13 +27,15 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         baseRequest.setHandled(true);
 
         System.out.println(target);
+        System.out.println("got a catch");
 
-        // here you do all the continuous integration tasks
-        // for example
-        // 1st clone your repository
-        // 2nd compile the code
 
-        response.getWriter().println("CI job done");
+        response.getWriter().println("Pull received");
+
+        data = baseRequest.getReader().lines().collect(Collectors.joining());
+        RequestHandler a = new RequestHandler();
+        a.data = data;
+        a.run();
     }
 
     // used to start the CI server in command line
@@ -45,4 +49,5 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         server.start();
         server.join();
     }
+
 }
