@@ -39,36 +39,18 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                 build(baseRequest, request, response);
             else {
                 // possibly put build history here
-                response.getWriter().write(
-                    "<html>" +
-                        "<head>" +
-                            "<title>404 - not found</title>" +
-                        "</head>" +
-                        "<body style=\"vertical-align: center\">" +
-                            "<div style=\"display: inline-block; text-align: center;\">" +
-                                "<img src=\"https://cdn.searchenginejournal.com/wp-content/uploads/2020/08/killer-404-page-coschedule-5f3d58c828b04.png\">" +
-                            "</div>" +
-                        "</body>" +
-                    "</html>");
+                fourOFour(response);
             }
         } else {
             String[] targetParams;
             targetParams = target.split("/");
             // splitting on "/" gives an empty string as first element since first character of target is a "/"
-            switch (targetParams[1]) {
-                case "build" -> search(targetParams[2], baseRequest, request, response);
-                case "allBuilds" -> history(baseRequest, request, response);
-                default -> response.getWriter().write(
-                    "<html>" +
-                        "<head>" +
-                            "<title>404 - not found</title>" +
-                        "</head>" +
-                        "<body style=\"vertical-align: center\">" +
-                            "<div style=\"display: inline-block; text-align: center;\">" +
-                                "<img src=\"https://cdn.searchenginejournal.com/wp-content/uploads/2020/08/killer-404-page-coschedule-5f3d58c828b04.png\">" +
-                            "</div>" +
-                        "</body>" +
-                    "</html>");
+            if (targetParams[1].equals("build")) {
+                search(targetParams[2], baseRequest, request, response);
+            } else if (targetParams[1].equals("allBuilds")) {
+                history(baseRequest, request, response);
+            } else {
+                fourOFour(response);
             }
         }
         response.getWriter().flush();
@@ -116,18 +98,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         boolean found = buildID.equals("1");
         if (!found) {
             //some inline HTML as a 404-page if buildID is invalid
-            response.setStatus(404);
-            response.getWriter().write(
-                    "<html>" +
-                        "<head>" +
-                            "<title>404 - not found</title>" +
-                        "</head>" +
-                        "<body style=\"vertical-align: center\">" +
-                            "<div style=\"width: 100%; display: inline-block; text-align: center;\">" +
-                                "The page you are trying to find does not exist" +
-                            "</div>" +
-                        "</body>" +
-                    "</html>");
+            fourOFour(response);
         }
         System.out.println("in Search!");
     }
@@ -151,6 +122,22 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                     "<body style=\"vertical-align: center\">" +
                         "<div style=\"display: inline-block; text-align: center; width: 100%;\">" +
                             "<span>Your build history will be visible here in the future</span>" +
+                        "</div>" +
+                    "</body>" +
+                "</html>");
+    }
+
+    private void fourOFour(HttpServletResponse response) throws IOException {
+        response.setStatus(404);
+        response.getWriter().write(
+                "<html>" +
+                    "<head>" +
+                        "<title>404 - not found</title>" +
+                    "</head>" +
+                    "<body style=\"vertical-align: center\">" +
+                        "<div style=\"width: 100%; display: inline-block; text-align: center;\">" +
+                            "<img src=\"https://cdn.searchenginejournal.com/wp-content/uploads/2020/08/killer-404-page-coschedule-5f3d58c828b04.png\">" +
+                            "The page you are trying to find does not exist" +
                         "</div>" +
                     "</body>" +
                 "</html>");
