@@ -15,18 +15,15 @@ public class jsonHandlerTest {
     @Test
     public void addBuildToDBTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,new installResult(true,"The install was successfull", "raw install logs"),new buildResult(true,"The build was successfull","raw build logs"), new testResult(true, "Successfull on 32 out of 32 tests", "raw test logs"),"rawLogs");
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
         db.addBuildToDB(b);
 
         ArrayList<Build> builds = db.getBuildHistory();
         Build bRes = builds.get(0);
 
         assertEquals(builds.size(),1);
-        assertEquals(bRes.getBuildID(),1);
+        assertEquals(b.equals(builds.get(0)),true);
 
-        assertEquals(bRes.getInstallResult().isInstallSuccessfull(),true);
-        assertEquals(bRes.getBuildResult().isBuildSuccessfull(),true);
-        assertEquals(bRes.getTestResult().isTestSuccessfull(),true);
     }
 
     /**
@@ -35,16 +32,12 @@ public class jsonHandlerTest {
     @Test
     public void findBuildSuccessfulTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,new installResult(true,"The install was successfull", "raw install logs"),new buildResult(true,"The build was successfull","raw build logs"), new testResult(true, "Successfull on 32 out of 32 tests", "raw test logs"),"rawLogs");
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
         db.addBuildToDB(b);
 
         Build bRes = db.findBuild(1);
 
-        assertEquals(bRes.getBuildID(),1);
-
-        assertEquals(bRes.getInstallResult().isInstallSuccessfull(),true);
-        assertEquals(bRes.getBuildResult().isBuildSuccessfull(),true);
-        assertEquals(bRes.getTestResult().isTestSuccessfull(),true);
+        assertEquals( b.equals(bRes),true);
     }
 
     /**
@@ -53,11 +46,11 @@ public class jsonHandlerTest {
     @Test
     public void findBuildFailTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,new installResult(true,"The install was successfull", "raw install logs"),new buildResult(true,"The build was successfull","raw build logs"), new testResult(true, "Successfull on 32 out of 32 tests", "raw test logs"),"rawLogs");
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
         db.addBuildToDB(b);
 
         Build bRes = db.findBuild(2);
-        assertEquals(bRes,null);
+        assertEquals(b.equals(bRes),false);
     }
 
 
@@ -70,15 +63,11 @@ public class jsonHandlerTest {
         BuildHistory db = handler.readBuildHistory();
         Build b1 = db.findBuild(1);
         Build b2 = db.findBuild(2);
+        Build b1res = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
+        Build b2res = new Build(2,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(false,"The install was successfull"),new buildResult(false,"The build was successfull"), new testResult(false, "Successfull on 32 out of 32 tests"));
 
-        assertEquals(b1.getInstallResult().isInstallSuccessfull(), true);
-        assertEquals(b1.getBuildResult().isBuildSuccessfull(), true);
-        assertEquals(b1.getTestResult().isTestSuccessfull(), true);
-
-
-        assertEquals(b2.getInstallResult().isInstallSuccessfull(), false);
-        assertEquals(b2.getBuildResult().isBuildSuccessfull(), false);
-        assertEquals(b2.getTestResult().isTestSuccessfull(), false);
+        assertEquals(b1.equals(b1res),true);
+        assertEquals(b2.equals(b2res),true);
     }
 
     /**
@@ -88,7 +77,7 @@ public class jsonHandlerTest {
     public void saveDBTest1() {
         jsonHandler handler = new jsonHandler("src/test/resources/saveBuildTest1.json");
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,new installResult(true,"The install was successfull", "raw install logs"),new buildResult(true,"The build was successfull","raw build logs"), new testResult(true, "Successfull on 32 out of 32 tests", "raw test logs"),"rawLogs");
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
         db.addBuildToDB(b);
         handler.saveBuildHistory(db);
 
@@ -100,17 +89,16 @@ public class jsonHandlerTest {
         Build b1 = correctDB.findBuild(1);
         Build b2 = testDB.findBuild(1);
 
+        assertEquals(b1.equals(b2),true);
+
         assertEquals(b1.getInstallResult().isInstallSuccessfull(), b2.getInstallResult().isInstallSuccessfull());
         assertEquals(b1.getInstallResult().getInstallLogs(),b2.getInstallResult().getInstallLogs());
-        assertEquals(b1.getInstallResult().getRawInstallLogs(),b2.getInstallResult().getRawInstallLogs());
 
         assertEquals(b1.getBuildResult().isBuildSuccessfull(), b2.getBuildResult().isBuildSuccessfull());
         assertEquals(b1.getBuildResult().getBuildLogs(),b2.getBuildResult().getBuildLogs());
-        assertEquals(b1.getBuildResult().getRawBuildLogs(),b2.getBuildResult().getRawBuildLogs());
 
         assertEquals(b1.getTestResult().isTestSuccessfull(), b2.getTestResult().isTestSuccessfull());
         assertEquals(b1.getTestResult().getTestLogs(),b2.getTestResult().getTestLogs());
-        assertEquals(b1.getTestResult().getRawTestLogs(),b2.getTestResult().getRawTestLogs());
     }
 
 

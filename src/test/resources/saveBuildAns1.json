@@ -2,22 +2,21 @@
   "buildHistory": [
     {
       "buildID": 1,
+      "commitHash": "45a1d97",
+      "buildDate": "2021-02-05T15:00:11Z",
+      "branch": "Kalle-#15-JSONpersistant-feat",
       "installResult": {
         "installSuccessfull": true,
-        "installLogs": "The install was successfull",
-        "rawInstallLogs": "raw install logs"
+        "installLogs": "The install was successfull"
       },
       "buildResult": {
         "buildSuccessfull": true,
-        "buildLogs": "The build was successfull",
-        "rawBuildLogs": "raw build logs"
+        "buildLogs": "The build was successfull"
       },
       "testResult": {
         "testSuccessfull": true,
-        "testLogs": "Successfull on 32 out of 32 tests",
-        "rawTestLogs": "raw test logs"
-      },
-      "rawGithubLogs": "rawLogs"
+        "testLogs": "Successfull on 32 out of 32 tests"
       }
+    }
   ]
 }

@@ -1,17 +1,24 @@
+import java.util.Objects;
+
 public class Build {
     private int buildID;
+    private String commitHash;
+    private String buildDate;
+    private String branch;
     private installResult installResult;
     private buildResult buildResult;
     private testResult testResult;
-    private Object rawGithubLogs;
 
-    public Build(int buildID, installResult installResult, buildResult buildResult, testResult testResult, Object rawGithubLogs) {
+    public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult) {
         this.buildID = buildID;
+        this.commitHash = commitHash;
+        this.buildDate = buildDate;
+        this.branch = branch;
         this.installResult = installResult;
         this.buildResult = buildResult;
         this.testResult = testResult;
-        this.rawGithubLogs = rawGithubLogs;
     }
+
 
     //--------------Getters and Setters ------------------
     public buildResult getBuildResult() {
@@ -30,13 +37,6 @@ public class Build {
         this.testResult = testResult;
     }
 
-    public Object getRawGithubLogs() {
-        return rawGithubLogs;
-    }
-
-    public void setRawGithubLogs(Object rawGithubLogs) {
-        this.rawGithubLogs = rawGithubLogs;
-    }
 
     public int getBuildID() {
         return buildID;
@@ -53,17 +53,52 @@ public class Build {
     public void setInstallResult(installResult installResult) {
         this.installResult = installResult;
     }
+
+    public String getCommitHash() {
+        return commitHash;
+    }
+
+    public void setCommitHash(String commitHash) {
+        this.commitHash = commitHash;
+    }
+
+    public String getBuildDate() {
+        return buildDate;
+    }
+
+    public void setBuildDate(String buildDate) {
+        this.buildDate = buildDate;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Build build = (Build) o;
+        return buildID == build.buildID && commitHash.equals(build.commitHash) && buildDate.equals(build.buildDate) && branch.equals(build.branch) && installResult.equals(build.installResult) && buildResult.equals(build.buildResult) && testResult.equals(build.testResult);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(buildID, commitHash, buildDate, branch, installResult, buildResult, testResult);
+    }
 }
 
 class buildResult{
     private boolean buildSuccessfull;
     private String buildLogs;
-    private String rawBuildLogs;
 
-    public buildResult(boolean buildSuccessfull, String buildLogs, String rawBuildLogs) {
+    public buildResult(boolean buildSuccessfull, String buildLogs) {
         this.buildSuccessfull = buildSuccessfull;
         this.buildLogs = buildLogs;
-        this.rawBuildLogs = rawBuildLogs;
     }
 
 
@@ -86,25 +121,28 @@ class buildResult{
     }
 
 
-    public String getRawBuildLogs() {
-        return rawBuildLogs;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        buildResult that = (buildResult) o;
+        return buildSuccessfull == that.buildSuccessfull && buildLogs.equals(that.buildLogs);
     }
 
-    public void setRawBuildLogs(String rawBuildLogs) {
-        this.rawBuildLogs = rawBuildLogs;
+    @Override
+    public int hashCode() {
+        return Objects.hash(buildSuccessfull, buildLogs);
     }
 }
 
 class testResult{
     private boolean testSuccessfull;
     private String testLogs;
-    private String rawTestLogs;
 
 
-    public testResult(boolean testSuccessfull, String testLogs, String rawTestLogs) {
+    public testResult(boolean testSuccessfull, String testLogs) {
         this.testSuccessfull = testSuccessfull;
         this.testLogs = testLogs;
-        this.rawTestLogs = rawTestLogs;
     }
 
     //--------------Getters and Setters ------------------
@@ -125,12 +163,18 @@ class testResult{
         this.testLogs = testLogs;
     }
 
-    public String getRawTestLogs() {
-        return rawTestLogs;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        testResult that = (testResult) o;
+        return testSuccessfull == that.testSuccessfull && testLogs.equals(that.testLogs);
     }
 
-    public void setRawTestLogs(String rawTestLogs) {
-        this.rawTestLogs = rawTestLogs;
+    @Override
+    public int hashCode() {
+        return Objects.hash(testSuccessfull, testLogs);
     }
 }
 
@@ -139,12 +183,10 @@ class testResult{
 class installResult{
     private boolean installSuccessfull;
     private String installLogs;
-    private String rawInstallLogs;
 
-    public installResult(boolean installSuccessfull, String installLogs, String rawInstallLogs) {
+    public installResult(boolean installSuccessfull, String installLogs) {
         this.installSuccessfull = installSuccessfull;
         this.installLogs = installLogs;
-        this.rawInstallLogs = rawInstallLogs;
     }
 
     //--------------Getters and Setters ------------------
@@ -165,12 +207,18 @@ class installResult{
         this.installLogs = installLogs;
     }
 
-    public String getRawInstallLogs() {
-        return rawInstallLogs;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        installResult that = (installResult) o;
+        return installSuccessfull == that.installSuccessfull && installLogs.equals(that.installLogs);
     }
 
-    public void setRawInstallLogs(String rawInstallLogs) {
-        this.rawInstallLogs = rawInstallLogs;
+    @Override
+    public int hashCode() {
+        return Objects.hash(installSuccessfull, installLogs);
     }
 }
 

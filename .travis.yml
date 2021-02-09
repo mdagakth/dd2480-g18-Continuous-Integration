@@ -1,6 +1,10 @@
 language: java
 sudo: false
 script: mvn clean compile test
+# blocklist
+branches:
+    except:
+    - /^TEST_.*$/
 after_success:
   - wget https://raw.githubusercontent.com/DiscordHooks/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
