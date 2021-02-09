@@ -9,7 +9,7 @@ public class jsonHandler {
 
     public jsonHandler(){
         gson = new Gson();
-        filePath = "src/main/resources/BuildHistoryDB.json";
+        filePath = "src/main/resources/test.json";
     }
     public jsonHandler(String filePath){
         gson = new Gson();

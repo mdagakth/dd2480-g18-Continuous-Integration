@@ -8,8 +8,9 @@ public class Build {
     private installResult installResult;
     private buildResult buildResult;
     private testResult testResult;
+    private String rawBuildLog;
 
-    public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult) {
+    public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult, String rawBuildLog) {
         this.buildID = buildID;
         this.commitHash = commitHash;
         this.buildDate = buildDate;
@@ -17,6 +18,7 @@ public class Build {
         this.installResult = installResult;
         this.buildResult = buildResult;
         this.testResult = testResult;
+        this.rawBuildLog = rawBuildLog;
     }
 
 
@@ -37,6 +39,13 @@ public class Build {
         this.testResult = testResult;
     }
 
+    public String getRawBuildLog() {
+        return rawBuildLog;
+    }
+
+    public void setRawBuildLog(String rawBuildLog) {
+        this.rawBuildLog = rawBuildLog;
+    }
 
     public int getBuildID() {
         return buildID;
