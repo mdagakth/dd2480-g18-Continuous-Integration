@@ -1,31 +1,54 @@
-import java.lang.Thread;
 import com.google.gson.*;
+import org.eclipse.egit.github.core.CommitStatus;
+import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.client.GitHubClient;
+import org.eclipse.egit.github.core.service.CommitService;
+import org.eclipse.egit.github.core.service.RepositoryService;
 
-import java.net.URI;
-import java.net.http.*;
+import java.io.File;
+import java.io.IOException;
 
+import token.token;
 public class RequestHandler implements Runnable{
 	volatile String data;
 
 	@Override
 	public void run() {
-		jsonHandler jsonHandler = new jsonHandler();
-		BuildHistory db = jsonHandler.readBuildHistory();
+
 		JsonObject jsonObject = new JsonParser().parse(data).getAsJsonObject();
-
-		String id = jsonObject.getAsJsonObject("head_commit").get("id").getAsString();
-
-		System.out.println(data);
-		HttpClient client = HttpClient.newHttpClient();
-		HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://<token>:x-oauth-basic@api.github.com/repos/DD2480-group18/dd2480-g18-Continuous-Integration/statuses/" + id))
-				.header("Content-type", "application/java").POST(HttpRequest.BodyPublishers.ofString("{\"status\":\"accept\"}")).build();
 		try {
-			HttpResponse response = client.send(request, HttpResponse.BodyHandlers.ofString());
-			System.out.println(response.body());
-
+			sendCommitStatus(jsonObject, CommitStatus.STATE_PENDING);
 		}catch (Exception e){}
 
+
+
+		try {
+			Thread.sleep(2000); // do busywork
+		}catch (Exception e){}
+
+
+
+		if (true) { //successfull build
+			try {
+				sendCommitStatus(jsonObject, CommitStatus.STATE_SUCCESS);
+			}catch (Exception e){}
+		}else{ //failed build
+			try {
+				sendCommitStatus(jsonObject, CommitStatus.STATE_FAILURE);
+			}catch (Exception e){}
+		}
 	}
+
+	private static void sendCommitStatus(JsonObject commit, String commitStatus) throws IOException {
+		GitHubClient ghc = new GitHubClient(); // Create GitHub Client
+		ghc.setOAuth2Token(token.token); // Authenticate.
+		RepositoryService rs = new RepositoryService(ghc); // get repo service
+		CommitService cs = new CommitService(ghc);
+
+		Repository repo = rs.getRepository(commit.getAsJsonObject("repository").getAsJsonObject("owner").get("name").getAsString(), commit.getAsJsonObject("repository").get("name").getAsString()); // get the repository
+		// Set commit status
+		CommitStatus status = cs.createStatus(repo, commit.get("after").getAsString(), new CommitStatus().setState(commitStatus));
+		System.out.println(status);
+	}
+
 }
-//https://api.github.com/repos/politrons/proyectV/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e
-//<token>:x-oauth-basic@ // add this if not working
