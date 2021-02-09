@@ -34,27 +34,35 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         // for example
         // 1st clone your repository
         // 2nd compile the code
-        if (target.equals("/")) {
-            if (request.getMethod().equals("POST"))
-                build(baseRequest, request, response);
-            else {
-                // possibly put build history here
-                fourOFour(response);
-            }
-        } else {
-            String[] targetParams;
-            targetParams = target.split("/");
-            // splitting on "/" gives an empty string as first element since first character of target is a "/"
-            if (targetParams[1].equals("build")) {
-                search(targetParams[2], baseRequest, request, response);
-            } else if (targetParams[1].equals("allBuilds")) {
-                history(baseRequest, request, response);
-            } else {
-                fourOFour(response);
-            }
+        switch (target) {
+            case "/":
+                switch (request.getMethod()) {
+                    case "POST":
+                        build(baseRequest, request, response);
+                        break;
+                    default:
+                        fourOFour(response);
+                        break;
+                }
+                break;
+            default:
+                String[] targetParams;
+                targetParams = target.split("/");
+                // splitting on "/" gives an empty string as first element since first character of target is a "/"
+                switch (targetParams[1]) {
+                    case "build":
+                        search(targetParams[2], baseRequest, request, response);
+                        break;
+                    case "allBuilds":
+                        history(baseRequest, request, response);
+                        break;
+                    default:
+                        fourOFour(response);
+                        break;
+                }
+                break;
         }
         response.getWriter().flush();
-        //response.getWriter().println("CI job done");
     }
 
 
@@ -94,7 +102,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
          * Fetch the correct build information file
          * Serve information if it exists, otherwise show some 404-page
          */
-        // boolean found = <build file exists>;
+        // 404 if build doesn't exist, serve it otherwise
         boolean found = buildID.equals("1");
         if (!found) {
             //some inline HTML as a 404-page if buildID is invalid
