@@ -18,15 +18,19 @@ public class Integrator {
     public final static String STATUS_SUCCESS = "SUCCESS";
     public final static String STATUS_FAILURE = "FAILURE";
 
+    // used based on boolean parameter "saveLocally"
+    public final static String DIRECTORY_LOCAL = "localjars/"; // gitignored
+    public final static String DIRECTORY_CLOUD = "cloudjars/"; // not gitignored
+
     public static void main(String[] args){
         // example code to show usage without changing main file
 
         String target = "/";
-        String commitedBranch = "TEST_total_success";
-        String commitHash = "117f7fb";
+        String commitedBranch = "oscar-#5-gitignore-fix";//"TEST_total_success";
+        String commitHash = "45a1d97";//"117f7fb";
         Map<String, String> statuses = null;
         if(target.equals("/"))
-            statuses = Integrator.integrateBuild(commitedBranch, commitHash);
+            statuses = Integrator.integrateBuild(commitedBranch, commitHash, false);
         System.out.println("Install status: " + statuses.get(STATUS_INSTALL)); // status of installing dependencies
         System.out.println("Compile status: " + statuses.get(STATUS_COMPILE)); // status of compiling build
         System.out.println("Install status: " + statuses.get(STATUS_TEST)); // status of unit tests
@@ -47,18 +51,21 @@ public class Integrator {
      *
      * @param commitBranch The branch that is pushed to the repository and that will be built.
      * @param commitHash The 7-character hash for the latest commit on <i>commitBranch</i>, <i>commitHash</i>.jar will be the build.
+     * @param saveLocally True to save to "localjars/" (.gitignored), false to save to "cloudjars/" (not .gitignored).
      * @return A String:String mapping where the statuses of "INSTALL", "COMPILE", and "TEST" are saved.
      */
-    public static Map<String,String> integrateBuild(String commitBranch, String commitHash){
+    public static Map<String,String> integrateBuild(String commitBranch, String commitHash, boolean saveLocally){
         Stack<String> outputStack = new Stack<String>();
         String branchKey = "DD2480_BUILD_BRANCH";
         String commitKey = "DD2480_BUILD_COMMIT";
+        String jarDirectoryKey = "DD2480_SAVE_DIRECTORY_NAME";
 
         // set up script environment
         ProcessBuilder pb = new ProcessBuilder();
         Map<String, String> env = pb.environment();
         env.put(branchKey, commitBranch);
         env.put(commitKey, commitHash);
+        env.put(jarDirectoryKey, (saveLocally) ? DIRECTORY_LOCAL : DIRECTORY_CLOUD);
 
         // store statuses to be returned
         Map<String, String> statuses = new HashMap<>();

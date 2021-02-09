@@ -1,0 +1,14 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------------< group18:ci >-----------------------------
+[INFO] Building ci 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-jar-plugin:3.0.2:jar (default-cli) @ ci ---
+[INFO] Building jar: /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/45a1d97/dd2480-g18-Continuous-Integration/target/ci-1.0.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.026 s
+[INFO] Finished at: 2021-02-09T10:48:19+01:00
+[INFO] ------------------------------------------------------------------------
