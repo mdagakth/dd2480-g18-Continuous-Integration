@@ -1,0 +1,19 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------------< group18:ci >-----------------------------
+[INFO] Building ci 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ ci ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/e6134f8/dd2480-g18-Continuous-Integration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ ci ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/e6134f8/dd2480-g18-Continuous-Integration/target/classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.812 s
+[INFO] Finished at: 2021-02-08T23:41:44+01:00
+[INFO] ------------------------------------------------------------------------
