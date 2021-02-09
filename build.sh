@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p tmp_build/$DD2480_BUILD_COMMIT
 cd tmp_build/$DD2480_BUILD_COMMIT
-git clone --depth=50 -b $DD2480_BUILD_BRANCH git@github.com:DD2480-group18/dd2480-g18-Continuous-Integration.git
+git clone --depth=50 -b $DD2480_BUILD_BRANCH https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration.git
 cd dd2480-g18-Continuous-Integration
 
 # download dependencies, log to file, and save status in env variable
