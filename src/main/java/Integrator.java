@@ -19,15 +19,15 @@ public class Integrator {
     public final static String STATUS_FAILURE = "FAILURE";
 
     // used based on boolean parameter "saveLocally"
-    public final static String DIRECTORY_LOCAL = "localjars/"; // gitignored
-    public final static String DIRECTORY_CLOUD = "cloudjars/"; // not gitignored
+    public final static String DIRECTORY_LOCAL = "localbuilds/"; // gitignored
+    public final static String DIRECTORY_CLOUD = "cloudbuilds/"; // not gitignored
 
     public static void main(String[] args){
         // example code to show usage without changing main file
 
         String target = "/";
-        String commitedBranch = "oscar-#5-gitignore-fix";//"TEST_total_success";
-        String commitHash = "45a1d97";//"117f7fb";
+        String commitedBranch = "oscar-#5-gitignore-fix";
+        String commitHash = "45a1d97";
         Map<String, String> statuses = null;
         if(target.equals("/"))
             statuses = Integrator.integrateBuild(commitedBranch, commitHash, false);
