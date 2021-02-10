@@ -2,8 +2,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.stream.Collectors;
 import java.nio.charset.StandardCharsets;
 
 import com.google.gson.JsonParser;
@@ -17,12 +17,14 @@ import org.eclipse.jetty.util.ajax.JSON;
  See the Jetty documentation for API documentation of those classes.
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
+
     private BuildHistory db;
 
     public ContinuousIntegrationServer() {
         jsonHandler json = new jsonHandler();
         db = json.readBuildHistory();
     }
+
 
     public void handle(String target,
                        Request baseRequest,
@@ -34,6 +36,8 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         baseRequest.setHandled(true);
 
         System.out.println(target);
+        
+
         System.out.println(request.getMethod());
 
 
@@ -85,11 +89,6 @@ public class ContinuousIntegrationServer extends AbstractHandler {
      * @param response: Where to send the result
      */
     private void build(Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println("Something got pushed");
-        String payload = java.net.URLDecoder.decode(request.getParameter("payload"), StandardCharsets.UTF_8);
-        System.out.println(payload);
-        Object payloadMap = JSON.parse(payload);
-        System.out.println(JSON.toString(payloadMap));
         /*
          * send request to GitHub to mark commit as pending
          * clone repo
@@ -97,6 +96,15 @@ public class ContinuousIntegrationServer extends AbstractHandler {
          * save results
          * send request to GitHub to mark commit with test results
          */
+        if (baseRequest.getMethod().equals("POST")) {
+            response.getWriter().println("POST received");
+            if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
+                String data = baseRequest.getReader().lines().collect(Collectors.joining());
+                RequestHandler a = new RequestHandler();
+                a.data = data;
+                a.run();
+            }
+        }
         response.getWriter().write("wow, something happened!");
     }
 
@@ -226,4 +234,5 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         server.start();
         server.join();
     }
+
 }

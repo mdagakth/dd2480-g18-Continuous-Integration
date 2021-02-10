@@ -8,6 +8,7 @@ localbuilds/
 *.ear
 .nar
 hs_err_pid
+src/main/java/token/
 
 ##############################
 ## Maven

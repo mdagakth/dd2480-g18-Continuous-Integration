@@ -1,6 +1,6 @@
 language: java
 sudo: false
-script: mvn clean compile test
+script: mvn -DargLine="-DDD2480_TOKEN=$DD2480_TOKEN" clean compile test
 # blocklist
 branches:
     except:
