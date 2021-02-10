@@ -1,13 +1,13 @@
 # dd2480-g18-Continuous-Integration
-The following project is an implementation of a small scale continous integration CI server. The CI server is built upon the skeleton code of another project called [smallest-java-ci](https://github.com/KTH-DD2480/smallest-java-ci). The CI-server implements the core features of a CI-server which means that for each push the CI-server will compile and test the code and then set the commit status on github. 
-The CI-server also allows users to browse previous builds.
+The following project is an implementation of a small scale continous integration CI server. The CI server is built from the skeleton code of another project called [smallest-java-ci](https://github.com/KTH-DD2480/smallest-java-ci). The CI-server implements the core features of a CI-server which means that for each push the CI-server will compile and test the code and then set the commit status on GitHub. 
+The CI-server also allows users to browse previous builds and get detailed information about a specific build. 
 
 An overview of how the CI-server works can be viewed below.
 ![alt text](CI-overview.png "CI-overview")
 
 
 # Motivation 
-The goal of the project is master the core of continous integration by implementing the core features of a CI-server. The secondary purpose of theis project is learning how to collaborate effectively when developing software. This includes issue tracking, task management, pull requests, code reviews and version control.  
+The goal of the project is to master the core of continous integration by implementing the core features of a CI-server. The secondary purpose of this project is learning how to collaborate effectively when developing software. This includes issue tracking, task management, pull requests, code reviews and version control.  
 
 # Tech Stack 
 Main programming language of this project is **Java** and the following technologies are used in this project, 
@@ -72,14 +72,15 @@ java -cp .:servlet-api-2.5.jar:jetty-all-$JETTY_VERSION.jar ContinuousIntegratio
 We configure our Github repository:
 
 * go to `Settings >> Webhooks`, click on `Add webhook`.
-* paste the forwarding URL (eg `http://8929b010.ngrok.io`) in field `Payload URL`) and send click on `Add webhook`. In the simplest setting, nothing more is required.
+* paste the forwarding URL (eg `http://8929b010.ngrok.io`) in field `Payload URL`)
+* change content-type to `application/json` and send click on `Add webhook`. In the simplest setting, nothing more is required.
 
 We test that everything works:
 
-* go to <http://localhost:8080> tp check that the CI server is running locally
+* go to <http://localhost:8080> to check that the CI-server is running locally
 * go to your Ngrok forwarding URL (eg <http://8929b010.ngrok.io>) to check that the CI server is visible from the internet, hence visible from Github
 * make a commit in your repository
-* observe the result, in two ways:
+* observe the result, in three ways:
   * locally: in the console of your first terminal window, observe the requested URL printed on the console
   * on github: go to `Settings >> Webhooks` in your repo, click on your newly created webhook, scroll down to "Recent Deliveries", click on the last delivery and the on the `Response tab`, you'll see the output of your server `CI job done`
   * on ngrok: raise the terminal window with Ngrok, and you'll also the see URLs requested by Github
