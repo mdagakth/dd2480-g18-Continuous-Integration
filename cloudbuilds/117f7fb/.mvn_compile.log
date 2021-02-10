@@ -6,14 +6,14 @@
 [INFO] 
 [INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ ci ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/main/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ ci ---
 [INFO] Changes detected - recompiling the module!
-[INFO] Compiling 1 source file to /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/classes
+[INFO] Compiling 1 source file to /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/classes
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.851 s
-[INFO] Finished at: 2021-02-09T10:00:56+01:00
+[INFO] Total time:  2.971 s
+[INFO] Finished at: 2021-02-10T19:10:08+01:00
 [INFO] ------------------------------------------------------------------------

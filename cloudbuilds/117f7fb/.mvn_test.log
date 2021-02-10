@@ -6,18 +6,18 @@
 [INFO] 
 [INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ ci ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/main/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ ci ---
 [INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- maven-resources-plugin:3.0.2:testResources (default-testResources) @ ci ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/test/resources
+[INFO] skip non existing resourceDirectory /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/src/test/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ ci ---
 [INFO] Changes detected - recompiling the module!
-[INFO] Compiling 2 source files to /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/test-classes
+[INFO] Compiling 2 source files to /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/test-classes
 [INFO] 
 [INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ ci ---
 [INFO] 
@@ -25,9 +25,9 @@
 [INFO]  T E S T S
 [INFO] -------------------------------------------------------
 [INFO] Running test.ExampleTest
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 s - in test.ExampleTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.107 s - in test.ExampleTest
 [INFO] Running SuccessTest
-[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in SuccessTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s - in SuccessTest
 [INFO] 
 [INFO] Results:
 [INFO] 
@@ -36,6 +36,6 @@
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.572 s
-[INFO] Finished at: 2021-02-09T10:01:01+01:00
+[INFO] Total time:  6.076 s
+[INFO] Finished at: 2021-02-10T19:10:17+01:00
 [INFO] ------------------------------------------------------------------------

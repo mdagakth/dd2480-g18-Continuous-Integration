@@ -117,7 +117,8 @@ public class jsonHandlerTest {
      */
     @Test
     public void testSaveGithubLogsWithCorrectCommitHash(){
-        jsonHandler jsonHandler = new jsonHandler();
+        jsonHandler json = new jsonHandler();
+        jsonHandler.local = false;
         Gson gson = new Gson();
         try (Reader reader = new FileReader("src/test/resources/rawGithubReqTest.json")) {
             JsonObject gitReq = gson.fromJson(reader,JsonObject.class);
@@ -129,7 +130,7 @@ public class jsonHandlerTest {
             f.mkdir();
 
             //save github log
-            jsonHandler.saveGithubLogs(gitReq,commitHash);
+            json.saveGithubLogs(gitReq,commitHash);
 
             //compare stored logs
             try (Reader r2 = new FileReader("cloudbuilds/"+commitHash +"/.github_req.json")){
@@ -151,6 +152,5 @@ public class jsonHandlerTest {
         }
 
     }
-
 
 }

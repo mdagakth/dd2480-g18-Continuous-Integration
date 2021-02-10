@@ -1,7 +1,7 @@
 {
-  "ref": "refs/heads/TEST_Lukas",
-  "before": "7787cab6009ef7e702a1af4c75a42c0283540f14",
-  "after": "340c4d520a0ede6cba0ee07f9641967e8a012b0f",
+  "ref": "refs/heads/TEST_total_success",
+  "before": "0000000000000000000000000000000000000000",
+  "after": "117f7fbc91789cbb6a175eb9c70d58b5c7f4a9e4",
   "repository": {
     "id": 335892998,
     "node_id": "MDEwOlJlcG9zaXRvcnkzMzU4OTI5OTg=",
@@ -71,14 +71,14 @@
     "releases_url": "https://api.github.com/repos/DD2480-group18/dd2480-g18-Continuous-Integration/releases{/id}",
     "deployments_url": "https://api.github.com/repos/DD2480-group18/dd2480-g18-Continuous-Integration/deployments",
     "created_at": 1612428545,
-    "updated_at": "2021-02-10T09:05:54Z",
-    "pushed_at": 1612950968,
+    "updated_at": "2021-02-10T17:31:51Z",
+    "pushed_at": 1612979639,
     "git_url": "git://github.com/DD2480-group18/dd2480-g18-Continuous-Integration.git",
     "ssh_url": "git@github.com:DD2480-group18/dd2480-g18-Continuous-Integration.git",
     "clone_url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration.git",
     "svn_url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration",
     "homepage": null,
-    "size": 1384,
+    "size": 1425,
     "stargazers_count": 0,
     "watchers_count": 0,
     "language": "Java",
@@ -91,10 +91,10 @@
     "mirror_url": null,
     "archived": false,
     "disabled": false,
-    "open_issues_count": 4,
+    "open_issues_count": 5,
     "license": null,
     "forks": 0,
-    "open_issues": 4,
+    "open_issues": 5,
     "watchers": 0,
     "default_branch": "main",
     "stargazers": 0,
@@ -102,8 +102,8 @@
     "organization": "DD2480-group18"
   },
   "pusher": {
-    "name": "LukasGutenberg",
-    "email": "Luckeg@hotmail.com"
+    "name": "martinfalke",
+    "email": "33692657+martinfalke@users.noreply.github.com"
   },
   "organization": {
     "login": "DD2480-group18",
@@ -120,76 +120,84 @@
     "description": null
   },
   "sender": {
-    "login": "LukasGutenberg",
-    "id": 17311691,
-    "node_id": "MDQ6VXNlcjE3MzExNjkx",
-    "avatar_url": "https://avatars.githubusercontent.com/u/17311691?v=4",
+    "login": "martinfalke",
+    "id": 33692657,
+    "node_id": "MDQ6VXNlcjMzNjkyNjU3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/33692657?v=4",
     "gravatar_id": "",
-    "url": "https://api.github.com/users/LukasGutenberg",
-    "html_url": "https://github.com/LukasGutenberg",
-    "followers_url": "https://api.github.com/users/LukasGutenberg/followers",
-    "following_url": "https://api.github.com/users/LukasGutenberg/following{/other_user}",
-    "gists_url": "https://api.github.com/users/LukasGutenberg/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/LukasGutenberg/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/LukasGutenberg/subscriptions",
-    "organizations_url": "https://api.github.com/users/LukasGutenberg/orgs",
-    "repos_url": "https://api.github.com/users/LukasGutenberg/repos",
-    "events_url": "https://api.github.com/users/LukasGutenberg/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/LukasGutenberg/received_events",
+    "url": "https://api.github.com/users/martinfalke",
+    "html_url": "https://github.com/martinfalke",
+    "followers_url": "https://api.github.com/users/martinfalke/followers",
+    "following_url": "https://api.github.com/users/martinfalke/following{/other_user}",
+    "gists_url": "https://api.github.com/users/martinfalke/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/martinfalke/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/martinfalke/subscriptions",
+    "organizations_url": "https://api.github.com/users/martinfalke/orgs",
+    "repos_url": "https://api.github.com/users/martinfalke/repos",
+    "events_url": "https://api.github.com/users/martinfalke/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/martinfalke/received_events",
     "type": "User",
     "site_admin": false
   },
-  "created": false,
+  "created": true,
   "deleted": false,
   "forced": false,
   "base_ref": null,
-  "compare": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/compare/7787cab6009e...340c4d520a0e",
+  "compare": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/commit/117f7fbc9178",
   "commits": [
     {
-      "id": "340c4d520a0ede6cba0ee07f9641967e8a012b0f",
-      "tree_id": "c1ca65f475f4cdf9b774b45dbebc75d653b50305",
+      "id": "117f7fbc91789cbb6a175eb9c70d58b5c7f4a9e4",
+      "tree_id": "7de98b7929c7cbd97ba4bc5b708f90c3161b2631",
       "distinct": true,
-      "message": "Update README.md",
-      "timestamp": "2021-02-10T10:56:08+01:00",
-      "url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/commit/340c4d520a0ede6cba0ee07f9641967e8a012b0f",
+      "message": "feat/#22 This commit should always succeed to install, succeed to build, and succeed with testing. Will be used for unit testing #17 and should not be used elsewhere. [travis skip]",
+      "timestamp": "2021-02-08T18:22:28+01:00",
+      "url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/commit/117f7fbc91789cbb6a175eb9c70d58b5c7f4a9e4",
       "author": {
-        "name": "LukasGutenberg",
-        "email": "Luckeg@hotmail.com",
-        "username": "LukasGutenberg"
+        "name": "Martin Falke",
+        "email": "mafalke@kth.se",
+        "username": "martinfalke"
       },
       "committer": {
-        "name": "GitHub",
-        "email": "noreply@github.com",
-        "username": "web-flow"
+        "name": "Martin Falke",
+        "email": "mafalke@kth.se",
+        "username": "martinfalke"
       },
-      "added": [],
-      "removed": [],
+      "added": [
+        "src/test/java/SuccessTest.java"
+      ],
+      "removed": [
+
+      ],
       "modified": [
-        "README.md"
+
       ]
     }
   ],
   "head_commit": {
-    "id": "340c4d520a0ede6cba0ee07f9641967e8a012b0f",
-    "tree_id": "c1ca65f475f4cdf9b774b45dbebc75d653b50305",
+    "id": "117f7fbc91789cbb6a175eb9c70d58b5c7f4a9e4",
+    "tree_id": "7de98b7929c7cbd97ba4bc5b708f90c3161b2631",
     "distinct": true,
-    "message": "Update README.md",
-    "timestamp": "2021-02-10T10:56:08+01:00",
-    "url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/commit/340c4d520a0ede6cba0ee07f9641967e8a012b0f",
+    "message": "feat/#22 This commit should always succeed to install, succeed to build, and succeed with testing. Will be used for unit testing #17 and should not be used elsewhere. [travis skip]",
+    "timestamp": "2021-02-08T18:22:28+01:00",
+    "url": "https://github.com/DD2480-group18/dd2480-g18-Continuous-Integration/commit/117f7fbc91789cbb6a175eb9c70d58b5c7f4a9e4",
     "author": {
-      "name": "LukasGutenberg",
-      "email": "Luckeg@hotmail.com",
-      "username": "LukasGutenberg"
+      "name": "Martin Falke",
+      "email": "mafalke@kth.se",
+      "username": "martinfalke"
     },
     "committer": {
-      "name": "GitHub",
-      "email": "noreply@github.com",
-      "username": "web-flow"
+      "name": "Martin Falke",
+      "email": "mafalke@kth.se",
+      "username": "martinfalke"
     },
-    "added": [],
-    "removed": [],
+    "added": [
+      "src/test/java/SuccessTest.java"
+    ],
+    "removed": [
+
+    ],
     "modified": [
-      "README.md"
+
     ]
   }
 }

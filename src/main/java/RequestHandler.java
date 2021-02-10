@@ -22,7 +22,7 @@ public class RequestHandler extends Thread {
 			sendCommitStatus(jsonObject, CommitStatus.STATE_PENDING, "Build started");
 		}catch (Exception e){}
 
-		boolean savedLocally = true;
+		boolean savedLocally = jsonHandler.local;
 		String branch = jsonObject.get("ref").getAsString().split("/")[2];
 		String commit = jsonObject.get("after").getAsString().substring(0,7);
 

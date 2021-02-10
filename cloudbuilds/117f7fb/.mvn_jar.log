@@ -5,10 +5,10 @@
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- maven-jar-plugin:3.0.2:jar (default-cli) @ ci ---
-[INFO] Building jar: /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/ci-1.0.jar
+[INFO] Building jar: /Users/oscar/Desktop/dd2480-g18-Continuous-Integration/tmp_build/117f7fb/dd2480-g18-Continuous-Integration/target/ci-1.0.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.962 s
-[INFO] Finished at: 2021-02-09T10:01:04+01:00
+[INFO] Total time:  1.673 s
+[INFO] Finished at: 2021-02-10T19:10:21+01:00
 [INFO] ------------------------------------------------------------------------

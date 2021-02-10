@@ -9,6 +9,7 @@ import java.io.*;
 public class jsonHandler {
     private Gson gson;
     private String filePath;
+    public static boolean local = true;
 
     public jsonHandler(){
         gson = new Gson();
@@ -43,7 +44,7 @@ public class jsonHandler {
     }
 
     public void saveGithubLogs(JsonObject rawGithubRequest, String commitHash){
-        String filePath = "localbuilds/" + commitHash + "/.github_req.json";
+        String filePath = (local ? "localbuilds/" : "cloudbuilds/") + commitHash + "/.github_req.json";
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(rawGithubRequest, writer);
         } catch (IOException e) {
