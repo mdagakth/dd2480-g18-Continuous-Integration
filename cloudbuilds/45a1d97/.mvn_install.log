@@ -1,0 +1,31 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------------< group18:ci >-----------------------------
+[INFO] Building ci 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:resolve (default-cli) @ ci ---
+[INFO] 
+[INFO] The following files have been resolved:
+[INFO]    org.eclipse.jetty:jetty-io:jar:7.0.2.v20100331:compile
+[INFO]    org.eclipse.jetty:jetty-util:jar:7.0.2.v20100331:compile
+[INFO]    javax.servlet:javax.servlet-api:jar:4.0.1:provided
+[INFO]    org.junit.jupiter:junit-jupiter:jar:5.7.0:test
+[INFO]    org.junit.jupiter:junit-jupiter-engine:jar:5.7.0:test
+[INFO]    org.eclipse.jetty:jetty-http:jar:7.0.2.v20100331:compile
+[INFO]    org.eclipse.jetty:jetty-continuation:jar:7.0.2.v20100331:compile
+[INFO]    org.junit.jupiter:junit-jupiter-api:jar:5.7.0:compile
+[INFO]    javax.servlet:servlet-api:jar:2.5:compile
+[INFO]    org.eclipse.jetty:jetty-server:jar:7.0.2.v20100331:compile
+[INFO]    org.opentest4j:opentest4j:jar:1.2.0:compile
+[INFO]    org.junit.jupiter:junit-jupiter-params:jar:5.7.0:test
+[INFO]    org.junit.platform:junit-platform-commons:jar:1.7.0:compile
+[INFO]    org.apiguardian:apiguardian-api:jar:1.1.0:compile
+[INFO]    org.junit.platform:junit-platform-engine:jar:1.7.0:test
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  2.379 s
+[INFO] Finished at: 2021-02-09T11:03:13+01:00
+[INFO] ------------------------------------------------------------------------

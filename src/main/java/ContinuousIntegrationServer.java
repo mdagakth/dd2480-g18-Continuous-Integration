@@ -16,7 +16,14 @@ import org.eclipse.jetty.util.ajax.JSON;
  See the Jetty documentation for API documentation of those classes.
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
-    String data;
+
+    private BuildHistory db;
+
+    public ContinuousIntegrationServer() {
+        jsonHandler json = new jsonHandler();
+        db = json.readBuildHistory();
+    }
+
 
     public void handle(String target,
                        Request baseRequest,
@@ -86,7 +93,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         if (baseRequest.getMethod().equals("POST")) {
             response.getWriter().println("POST received");
             if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
-                data = baseRequest.getReader().lines().collect(Collectors.joining());
+                String data = baseRequest.getReader().lines().collect(Collectors.joining());
                 RequestHandler a = new RequestHandler();
                 a.data = data;
                 a.run();
@@ -109,10 +116,40 @@ public class ContinuousIntegrationServer extends AbstractHandler {
          * Serve information if it exists, otherwise show some 404-page
          */
         // 404 if build doesn't exist, serve it otherwise
-        boolean found = buildID.equals("1");
+        Build b = db.findBuild(Integer.parseInt(buildID));
+        boolean found = b != null;
         if (!found) {
             //some inline HTML as a 404-page if buildID is invalid
             fourOFour(response);
+        } else {
+            response.getWriter().write(
+                "<html>" +
+                    "<head>" +
+                        "<title>Build " + b.getBuildID() + "</title>" +
+                    "</head>" +
+                    "<body>" +
+                        "<div style=\"text-align: center; width: 100%;\">" +
+                            "<h1>Commit " + b.getCommitHash() + " on branch " + b.getBranch() + " built at " + b.getBuildDate() + " with id " + b.getBuildID() + "</h1>" +
+                        "</div>" +
+                        "<div>" +
+                            "<h2>Install results</h2>" +
+                            "<div style=\"width: 100%; border: 2px solid\">" +
+                                "<p>" + b.getInstallResult().getInstallLogs() + "</p>" +
+                            "</div>" +
+                            "<h2>Build results</h2>" +
+                            "<div style=\"width: 100%; border: 2px solid\">" +
+                                "<p>" + b.getBuildResult().getBuildLogs() + "</p>" +
+                            "</div>" +
+                            "<h2>Test results</h2>" +
+                            "<div style=\"width: 100%; border: 2px solid\">" +
+                                "<p>" + b.getTestResult().getTestLogs() + "</p>" +
+                            "</div>" +
+                        "</div>" +
+                        "<iframe style=\"margin-top: 20px;\" srcdoc=\"<html><head></head><body>" + b.getRawBuildLog() + "</body></html>\"></iframe>" +
+                    "</body>" +
+                "</html>"
+
+            );
         }
         System.out.println("in Search!");
     }
@@ -128,17 +165,39 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         /*
          * Fetch the full commit-history and write it to the response
          */
-        response.getWriter().write(
-                "<html>" +
-                    "<head>" +
-                        "<title>Build history</title>" +
-                    "</head>" +
-                    "<body style=\"vertical-align: center\">" +
-                        "<div style=\"display: inline-block; text-align: center; width: 100%;\">" +
-                            "<span>Your build history will be visible here in the future</span>" +
+        StringBuilder html = new StringBuilder(
+            "<html>" +
+                "<head>" +
+                    "<title>Build history</title>" +
+                "</head>" +
+                "<body style=\"vertical-align: center\">" +
+                    "<div style=\"display: inline-block; text-align: center; width: 100%;\">" +
+                        "<table>" +
+                            "<tr>" +
+                                "<th>Build id</th>" +
+                                "<th>Commit id</th>" +
+                                "<th>Branch</th>" +
+                                "<th>Date</th>" +
+                                "<th>Install result</th>" +
+                                "<th>Build result</th>" +
+                                "<th>Test result</th>" +
+                            "</tr>");
+        for (Build b : db.getBuildHistory())
+            html.append("<tr><td>").append(b.getBuildID()).append("</td>")
+                    .append("<td>")
+                    .append("<a href=/build/").append(b.getBuildID()).append(">").append(b.getCommitHash()).append("</a></td>")
+                    .append("<td>").append(b.getBranch()).append("</td>")
+                    .append("<td>").append(b.getBuildDate()).append("</td>")
+                    .append("<td>").append(b.getInstallResult().isInstallSuccessfull() ? "Success" : "Failure").append("</td>")
+                    .append("<td>").append(b.getBuildResult().isBuildSuccessfull() ? "Success" : "Failure").append("</td>")
+                    .append("<td>").append(b.getTestResult().isTestSuccessfull() ? "Success" : "Failure").append("</td>")
+                    .append("</tr>");
+        html.append(
+                            "</table>" +
                         "</div>" +
                     "</body>" +
                 "</html>");
+        response.getWriter().write(html.toString());
     }
 
     private void fourOFour(HttpServletResponse response) throws IOException {
