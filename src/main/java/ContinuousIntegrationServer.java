@@ -41,9 +41,6 @@ public class ContinuousIntegrationServer extends AbstractHandler {
         System.out.println(request.getMethod());
 
 
-        jsonHandler jsonHandler = new jsonHandler();
-        jsonHandler.saveGithubLogs(new JsonParser().parse(java.net.URLDecoder.decode(request.getParameter("payload"), String.valueOf(StandardCharsets.UTF_8))).getAsJsonObject(),"45a1d97");
-
 
         // here you do all the continuous integration tasks
         // for example
@@ -77,7 +74,6 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                 }
                 break;
         }
-        response.getWriter().flush();
     }
 
 
@@ -89,21 +85,17 @@ public class ContinuousIntegrationServer extends AbstractHandler {
      * @param response: Where to send the result
      */
     private void build(Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*
-         * send request to GitHub to mark commit as pending
-         * clone repo
-         * run tests
-         * save results
-         * send request to GitHub to mark commit with test results
-         */
         response.getWriter().println("POST received");
+        response.setStatus(200);
+        flushResponseWriter(response);
         if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
             String data = baseRequest.getReader().lines().collect(Collectors.joining());
             RequestHandler a = new RequestHandler();
             a.data = data;
-            a.run();
+            a.start();
         }
     }
+
 
 
     /**
@@ -150,11 +142,9 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                             "</div>" +
                         "</div>" +
                     "</body>" +
-                "</html>"
-
-            );
+                "</html>");
         }
-        System.out.println("in Search!");
+        flushResponseWriter(response);
     }
 
     /**
@@ -165,9 +155,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
      * @param response: Where to send the result
      */
     private void history(Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        /*
-         * Fetch the full commit-history and write it to the response
-         */
+        // Fetch the full commit-history and write it to the response
         StringBuilder html = new StringBuilder(
             "<html>" +
                 "<head>" +
@@ -201,6 +189,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                     "</body>" +
                 "</html>");
         response.getWriter().write(html.toString());
+        flushResponseWriter(response);
     }
 
     private void fourOFour(HttpServletResponse response) throws IOException {
@@ -217,8 +206,18 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                         "</div>" +
                     "</body>" +
                 "</html>");
+        flushResponseWriter(response);
     }
 
+    /**
+     * Method for flushing the response writer
+     *
+     * @param response: the response object with the writer
+     * @throws IOException: in case of an exception occurring in getWriter()
+     */
+    private void flushResponseWriter(HttpServletResponse response) throws IOException {
+        response.getWriter().flush();
+    }
 
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception {
