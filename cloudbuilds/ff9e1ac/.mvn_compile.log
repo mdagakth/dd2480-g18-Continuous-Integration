@@ -1,0 +1,40 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] -----------------------------< group18:ci >-----------------------------
+[INFO] Building ci 1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- maven-resources-plugin:3.0.2:resources (default-resources) @ ci ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.8.0:compile (default-compile) @ ci ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/target/classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,9] not a statement
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,69] ';' expected
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,73] unclosed comment
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[46,1] reached end of file while parsing
+[INFO] 4 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.255 s
+[INFO] Finished at: 2021-02-08T23:41:12+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.8.0:compile (default-compile) on project ci: Compilation failure: Compilation failure: 
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,9] not a statement
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,69] ';' expected
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[33,73] unclosed comment
+[ERROR] /home/mfboom/kthprog/DD2480/CI/dd2480-g18-Continuous-Integration/tmp_build/ff9e1ac/dd2480-g18-Continuous-Integration/src/main/java/ContinuousIntegrationServer.java:[46,1] reached end of file while parsing
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

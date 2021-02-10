@@ -18,6 +18,7 @@ Main programming language of this project is **Java** and the following technolo
 * GSON v.2.8.5
 * ngrok
 * bash scripts
+* [Octokit library](https://docs.github.com/en/rest/overview/libraries#java)
 
 # Installation
 Following section describes how to set up the development environment. 

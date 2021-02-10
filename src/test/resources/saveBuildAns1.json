@@ -16,7 +16,8 @@
       "testResult": {
         "testSuccessfull": true,
         "testLogs": "Successfull on 32 out of 32 tests"
-      }
+      },
+      "rawBuildLog": "rigorous log"
     }
   ]
 }
