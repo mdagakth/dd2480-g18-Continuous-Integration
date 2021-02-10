@@ -22,7 +22,7 @@ public class jsonHandlerTest {
     @Test
     public void addBuildToDBTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"), "rigorous log");
         db.addBuildToDB(b);
 
         ArrayList<Build> builds = db.getBuildHistory();
@@ -39,7 +39,7 @@ public class jsonHandlerTest {
     @Test
     public void findBuildSuccessfulTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"), "rigorous log");
         db.addBuildToDB(b);
 
         Build bRes = db.findBuild(1);
@@ -53,7 +53,7 @@ public class jsonHandlerTest {
     @Test
     public void findBuildFailTest(){
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"), "rigorous log");
         db.addBuildToDB(b);
 
         Build bRes = db.findBuild(2);
@@ -70,8 +70,8 @@ public class jsonHandlerTest {
         BuildHistory db = handler.readBuildHistory();
         Build b1 = db.findBuild(1);
         Build b2 = db.findBuild(2);
-        Build b1res = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
-        Build b2res = new Build(2,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(false,"The install was successfull"),new buildResult(false,"The build was successfull"), new testResult(false, "Successfull on 32 out of 32 tests"));
+        Build b1res = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"), "rigorous log");
+        Build b2res = new Build(2,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(false,"The install was successfull"),new buildResult(false,"The build was successfull"), new testResult(false, "Successfull on 32 out of 32 tests"), "rigorous log");
 
         assertEquals(b1.equals(b1res),true);
         assertEquals(b2.equals(b2res),true);
@@ -84,7 +84,7 @@ public class jsonHandlerTest {
     public void saveDBTest1() {
         jsonHandler handler = new jsonHandler("src/test/resources/saveBuildTest1.json");
         BuildHistory db = new BuildHistory();
-        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"));
+        Build b = new Build(1,"45a1d97","2021-02-05T15:00:11Z","Kalle-#15-JSONpersistant-feat",new installResult(true,"The install was successfull"),new buildResult(true,"The build was successfull"), new testResult(true, "Successfull on 32 out of 32 tests"), "rigorous log");
         db.addBuildToDB(b);
         handler.saveBuildHistory(db);
 
