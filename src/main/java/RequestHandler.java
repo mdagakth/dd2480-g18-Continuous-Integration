@@ -43,7 +43,7 @@ public class RequestHandler implements Runnable{
 
 	private static void sendCommitStatus(JsonObject commit, String commitStatus) throws IOException {
 		GitHubClient ghc = new GitHubClient(); // Create GitHub Client
-		ghc.setOAuth2Token(System.getenv("DD2480_TOKEN")); // Authenticate.
+		ghc.setOAuth2Token(System.getProperty("DD2480_TOKEN")); // Authenticate.
 		RepositoryService rs = new RepositoryService(ghc); // get repo service
 		CommitService cs = new CommitService(ghc);
 
