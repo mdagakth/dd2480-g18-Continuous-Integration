@@ -10,7 +10,6 @@ import com.google.gson.JsonParser;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
-import org.eclipse.jetty.util.ajax.JSON;
 
 /** 
  Skeleton of a ContinuousIntegrationServer which acts as webhook
@@ -18,10 +17,11 @@ import org.eclipse.jetty.util.ajax.JSON;
 */
 public class ContinuousIntegrationServer extends AbstractHandler {
 
-    private BuildHistory db;
+    public static BuildHistory db;
+    public static jsonHandler json;
 
     public ContinuousIntegrationServer() {
-        jsonHandler json = new jsonHandler();
+        json = new jsonHandler();
         db = json.readBuildHistory();
     }
 
@@ -96,16 +96,13 @@ public class ContinuousIntegrationServer extends AbstractHandler {
          * save results
          * send request to GitHub to mark commit with test results
          */
-        if (baseRequest.getMethod().equals("POST")) {
-            response.getWriter().println("POST received");
-            if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
-                String data = baseRequest.getReader().lines().collect(Collectors.joining());
-                RequestHandler a = new RequestHandler();
-                a.data = data;
-                a.run();
-            }
+        response.getWriter().println("POST received");
+        if (!baseRequest.getHeader("X-Github-Event").equals("ping")) {
+            String data = baseRequest.getReader().lines().collect(Collectors.joining());
+            RequestHandler a = new RequestHandler();
+            a.data = data;
+            a.run();
         }
-        response.getWriter().write("wow, something happened!");
     }
 
 
@@ -152,7 +149,6 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                                 "<p>" + b.getTestResult().getTestLogs() + "</p>" +
                             "</div>" +
                         "</div>" +
-                        "<iframe style=\"margin-top: 20px;\" srcdoc=\"<html><head></head><body>" + b.getRawBuildLog() + "</body></html>\"></iframe>" +
                     "</body>" +
                 "</html>"
 

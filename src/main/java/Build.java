@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Objects;
 
 public class Build {
@@ -8,9 +13,8 @@ public class Build {
     private installResult installResult;
     private buildResult buildResult;
     private testResult testResult;
-    private String rawBuildLog;
 
-    public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult, String rawBuildLog) {
+    public Build(int buildID, String commitHash, String buildDate, String branch, installResult installResult, buildResult buildResult, testResult testResult) {
         this.buildID = buildID;
         this.commitHash = commitHash;
         this.buildDate = buildDate;
@@ -18,7 +22,28 @@ public class Build {
         this.installResult = installResult;
         this.buildResult = buildResult;
         this.testResult = testResult;
-        this.rawBuildLog = rawBuildLog;
+    }
+
+    public Build(int buildID, String commitHash, String buildDate, String branch, String installStatus, String buildStatus, String testStatus, boolean savedLocally){
+        String buildDir = (savedLocally) ? "localbuilds/" : "cloudbuilds/";
+        String installLog ="", buildLog="", testLog="";
+        try {
+            installLog = Files.readString(Path.of(buildDir + commitHash + "/.mvn_install.log"));
+            buildLog = Files.readString(Path.of(buildDir + commitHash + "/.mvn_compile.log"));
+            testLog = Files.readString(Path.of(buildDir + commitHash + "/.mvn_test.log"));
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        installResult installRes = new installResult(installStatus.equals(Integrator.STATUS_SUCCESS), installLog);
+        buildResult buildRes = new buildResult(buildStatus.equals(Integrator.STATUS_SUCCESS), buildLog);
+        testResult testRes = new testResult(testStatus.equals(Integrator.STATUS_SUCCESS), testLog);
+        this.buildID = buildID;
+        this.commitHash = commitHash;
+        this.buildDate = buildDate;
+        this.branch = branch;
+        this.installResult = installRes;
+        this.buildResult = buildRes;
+        this.testResult = testRes;
     }
 
 
@@ -37,14 +62,6 @@ public class Build {
 
     public void setTestResult(testResult testResult) {
         this.testResult = testResult;
-    }
-
-    public String getRawBuildLog() {
-        return rawBuildLog;
-    }
-
-    public void setRawBuildLog(String rawBuildLog) {
-        this.rawBuildLog = rawBuildLog;
     }
 
     public int getBuildID() {

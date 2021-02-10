@@ -8,6 +8,9 @@ import org.eclipse.egit.github.core.service.RepositoryService;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Map;
 
 public class RequestHandler implements Runnable{
 	volatile String data;
@@ -22,15 +25,20 @@ public class RequestHandler implements Runnable{
 			sendCommitStatus(jsonObject, CommitStatus.STATE_PENDING);
 		}catch (Exception e){}
 
+		boolean savedLocally = true;
+		String branch = jsonObject.get("ref").getAsString().split("/")[2];
+		String commit = jsonObject.get("after").getAsString().substring(0,7);
+		// perform the integration build with unit tests and save the resulting statuses
+		Map<String, String> statuses = Integrator.integrateBuild(branch, commit, savedLocally);
+		Build build = new Build(ContinuousIntegrationServer.db.getNextBuildID(), commit, new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime()),
+				branch, statuses.get(Integrator.STATUS_INSTALL), statuses.get(Integrator.STATUS_COMPILE), statuses.get(Integrator.STATUS_TEST),
+				savedLocally);
+		ContinuousIntegrationServer.db.addBuildToDB(build);
+		ContinuousIntegrationServer.json.saveBuildHistory(ContinuousIntegrationServer.db);
 
-
-		try {
-			Thread.sleep(2000); // do busywork
-		}catch (Exception e){}
-
-
-
-		if (true) { //successfull build
+		// if tests succeed, everything has succeeded
+		String testStatus = statuses.get(Integrator.STATUS_TEST);
+		if (testStatus.equals(Integrator.STATUS_SUCCESS)) { //successfull build
 			try {
 				sendCommitStatus(jsonObject, CommitStatus.STATE_SUCCESS);
 			}catch (Exception e){}
