@@ -31,7 +31,6 @@ public class RequestHandlerTest {
 		JsonObject jsonObject = new JsonObject();
 		try {
 			JsonParser parser = new JsonParser();
-			System.out.println(System.getProperty("user.dir"));
 			JsonElement jsonElement = parser.parse(new FileReader("src/test/java/testdatacommit.json"));
 			jsonObject = jsonElement.getAsJsonObject();
 		}catch (Exception e){System.out.println(e.getMessage()); fail();}
