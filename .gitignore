@@ -8,7 +8,7 @@ localjars/*.jar
 *.ear
 .nar
 hs_err_pid
-src/main/java/token
+src/main/java/token/
 
 ##############################
 ## Maven

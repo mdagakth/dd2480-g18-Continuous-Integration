@@ -6,6 +6,7 @@ import org.eclipse.egit.github.core.service.CommitService;
 import org.eclipse.egit.github.core.service.RepositoryService;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import token.token;
@@ -16,6 +17,8 @@ public class RequestHandler implements Runnable{
 	public void run() {
 
 		JsonObject jsonObject = new JsonParser().parse(data).getAsJsonObject();
+
+
 		try {
 			sendCommitStatus(jsonObject, CommitStatus.STATE_PENDING);
 		}catch (Exception e){}
@@ -48,7 +51,6 @@ public class RequestHandler implements Runnable{
 		Repository repo = rs.getRepository(commit.getAsJsonObject("repository").getAsJsonObject("owner").get("name").getAsString(), commit.getAsJsonObject("repository").get("name").getAsString()); // get the repository
 		// Set commit status
 		CommitStatus status = cs.createStatus(repo, commit.get("after").getAsString(), new CommitStatus().setState(commitStatus));
-		System.out.println(status);
 	}
 
 }
