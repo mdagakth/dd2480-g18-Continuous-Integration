@@ -118,7 +118,7 @@ public class jsonHandlerTest {
     @Test
     public void testSaveGithubLogsWithCorrectCommitHash(){
         jsonHandler json = new jsonHandler();
-        jsonHandler.local = false;
+        jsonHandler.local = true;
         Gson gson = new Gson();
         try (Reader reader = new FileReader("src/test/resources/rawGithubReqTest.json")) {
             JsonObject gitReq = gson.fromJson(reader,JsonObject.class);
