@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+import com.google.gson.JsonParser;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.handler.AbstractHandler;
@@ -29,6 +30,11 @@ public class ContinuousIntegrationServer extends AbstractHandler {
 
         System.out.println(target);
         System.out.println(request.getMethod());
+
+
+        jsonHandler jsonHandler = new jsonHandler();
+        jsonHandler.saveGithubLogs(new JsonParser().parse(java.net.URLDecoder.decode(request.getParameter("payload"), String.valueOf(StandardCharsets.UTF_8))).getAsJsonObject(),"45a1d97");
+
 
         // here you do all the continuous integration tasks
         // for example
@@ -75,7 +81,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
      */
     private void build(Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
         System.out.println("Something got pushed");
-        String payload = java.net.URLDecoder.decode(request.getParameter("payload"), StandardCharsets.UTF_8);;
+        String payload = java.net.URLDecoder.decode(request.getParameter("payload"), String.valueOf(StandardCharsets.UTF_8));
         System.out.println(payload);
         Object payloadMap = JSON.parse(payload);
         System.out.println(JSON.toString(payloadMap));
@@ -88,6 +94,7 @@ public class ContinuousIntegrationServer extends AbstractHandler {
          */
         response.getWriter().write("wow, something happened!");
     }
+
 
     /**
      * Fetches information about the build with id "buildID"
@@ -151,11 +158,11 @@ public class ContinuousIntegrationServer extends AbstractHandler {
                 "</html>");
     }
 
+
     // used to start the CI server in command line
     public static void main(String[] args) throws Exception {
         jsonHandler jsonHandler = new jsonHandler();
         BuildHistory db = jsonHandler.readBuildHistory();
-
 
         Server server = new Server(8080);
         server.setHandler(new ContinuousIntegrationServer());

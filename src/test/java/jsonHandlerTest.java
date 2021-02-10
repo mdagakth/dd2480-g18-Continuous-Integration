@@ -1,6 +1,14 @@
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.junit.jupiter.api.Test;
 
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -101,6 +109,49 @@ public class jsonHandlerTest {
         assertEquals(b1.getTestResult().getTestLogs(),b2.getTestResult().getTestLogs());
     }
 
+
+    /**
+     * Testing the saveGithubLogs function with a commit hash that exists.
+     * First creates a directory with a dummy commithash
+     * then save dummy git req to a file
+     * cleanup and remove directory and file
+     */
+    @Test
+    public void testSaveGithubLogsWithCorrectCommitHash(){
+        jsonHandler jsonHandler = new jsonHandler();
+        Gson gson = new Gson();
+        try (Reader reader = new FileReader("src/test/resources/rawGithubReqTest.json")) {
+            JsonObject gitReq = gson.fromJson(reader,JsonObject.class);
+            String gitLogs = gitReq.toString();
+            String commitHash = "test1234";
+
+            //setup dummy folder
+            File f = new File("cloudbuilds/" + commitHash);
+            f.mkdir();
+
+            //save github log
+            jsonHandler.saveGithubLogs(gitReq,commitHash);
+
+            //compare stored logs
+            try (Reader r2 = new FileReader("cloudbuilds/"+commitHash +"/.github_req.json")){
+                JsonObject gitReqRead = gson.fromJson(r2,JsonObject.class);
+
+                assertEquals(gitLogs,gitReqRead.toString());
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+            //clean up
+            File f1 = new File("cloudbuilds/" + commitHash+"/.github_req.json");
+            File f2 = new File("cloudbuilds/" + commitHash);
+            f1.delete();
+            f2.delete();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 
 }
