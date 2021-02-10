@@ -125,14 +125,14 @@ public class jsonHandlerTest {
             String commitHash = "test1234";
 
             //setup dummy folder
-            File f = new File("cloudbuilds/" + commitHash);
+            File f = new File("localbuilds/" + commitHash);
             f.mkdir();
 
             //save github log
             jsonHandler.saveGithubLogs(gitReq,commitHash);
 
             //compare stored logs
-            try (Reader r2 = new FileReader("cloudbuilds/"+commitHash +"/.github_req.json")){
+            try (Reader r2 = new FileReader("localbuilds/"+commitHash +"/.github_req.json")){
                 JsonObject gitReqRead = gson.fromJson(r2,JsonObject.class);
 
                 assertEquals(gitLogs,gitReqRead.toString());
@@ -141,8 +141,8 @@ public class jsonHandlerTest {
             }
 
             //clean up
-            File f1 = new File("cloudbuilds/" + commitHash+"/.github_req.json");
-            File f2 = new File("cloudbuilds/" + commitHash);
+            File f1 = new File("localbuilds/" + commitHash+"/.github_req.json");
+            File f2 = new File("localbuilds/" + commitHash);
             f1.delete();
             f2.delete();
 
