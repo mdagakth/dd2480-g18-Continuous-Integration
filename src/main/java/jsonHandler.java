@@ -43,7 +43,7 @@ public class jsonHandler {
     }
 
     public void saveGithubLogs(JsonObject rawGithubRequest, String commitHash){
-        String filePath = "cloudbuilds/" + commitHash + "/.github_req.json";
+        String filePath = "localbuilds/" + commitHash + "/.github_req.json";
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(rawGithubRequest, writer);
         } catch (IOException e) {
