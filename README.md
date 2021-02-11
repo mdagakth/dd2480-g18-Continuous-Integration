@@ -90,3 +90,76 @@ We would like to thank the teachers and TAs of the course DD2480 - Software Engi
 
 
 # List of Contributions
+
+## David Yu
+#### Features
+- [x] Core CI feature #3 - Notification and feedback 
+- [x] Integration of API
+#### Refactoring
+- [x] Added some documentation comments 
+#### Documentation
+- [x] Contributed to creating Wikipage about the API on GitHub
+- [x] Added additional content to README 
+#### Reviews
+- Peer review on a few PRs
+
+
+## Kalle Pettersson
+#### Features
+- [x] TravisCI 
+- [x] Created Github organisation
+- [x] Created features associated with reading and saving database persistantly and created Object representation of database #10, #15, #25, #28
+#### Refactoring
+- [x] Combining all parts in the end (with all)
+#### Documentation
+- [x] README file
+- [x] Put together list of contributions
+- [x] API wiki (with david)
+#### Reviews
+- Pull Request #24
+#### Group coordinator
+- [x] Small admin related tasks as group coordinator 
+
+
+## Lukas Gutenberg
+#### Features
+- [x] Json structure
+- [x] github api interface
+- [x] infrastructure for running the program
+#### Documentation
+- [x] some commenting throughout the code
+#### Reviews
+- [x] a bunch of them
+
+
+## Martin Falke
+#### Features
+- [x] TravisCI setup for project, ignore TEST_ branches
+- [x] Integrator class as an interface to the build script, including unit tests
+- [x] Build script that
+  - clones
+  - installs dependencies
+  - compiles
+  - and tests the group project
+  - return statuses of each stage
+  - Prepared test branches
+#### Refactoring
+- [x] Moving from non-gitignored to gitignored builds (mutual work)
+- [x] Smaller fixes in code to allow unit tests and regular code to run without interfering
+#### Documentation
+- [x] README minor fix
+#### Reviews
+- Bunch of pull requests
+
+
+## Oscar Lindgren
+#### Features
+- [x] Core CI feature #4 - Implemented endpoints to check build history and server structure
+- [x] Took part in the integration of parts into a whole functioning server 
+#### Refactoring
+- [x] Mainly refactor variables to be used by the whole system
+#### Documentation
+- [x] Java docstrings for each of the endpoints
+#### Reviews
+- Peer review on a few PRs
+
