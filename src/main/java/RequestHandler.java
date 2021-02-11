@@ -15,6 +15,9 @@ import java.util.Map;
 public class RequestHandler implements Runnable{
 	volatile String data;
 
+	/**
+	 * This is the main method that starts a thread and sends commmit status to GitHub. 
+	 */
 	@Override
 	public void run() {
 
@@ -49,6 +52,12 @@ public class RequestHandler implements Runnable{
 		}
 	}
 
+	/**
+	 * This method sends commit status to GitHub using EGit library. 
+	 * @param commit
+	 * @param commitStatus
+	 * @throws IOException
+	 */
 	private static void sendCommitStatus(JsonObject commit, String commitStatus) throws IOException {
 		GitHubClient ghc = new GitHubClient(); // Create GitHub Client
 		ghc.setOAuth2Token(System.getProperty("DD2480_TOKEN")); // Authenticate.
