@@ -19,6 +19,10 @@ public class jsonHandler {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads the json database and initializes a buildHistory object containing the database
+     * @return Object representation of json database
+     */
     public BuildHistory readBuildHistory(){
         BuildHistory db = null;
         Gson gson = new Gson();
@@ -34,6 +38,10 @@ public class jsonHandler {
     }
 
 
+    /**
+     * Stores the object version of our database to file, src/main/resources/BuildHistoryDB.json
+     * @param db, the object representation of our json database
+     */
     public void saveBuildHistory(BuildHistory db){
         try (FileWriter writer = new FileWriter(filePath)) {
             gson.toJson(db, writer);
@@ -42,6 +50,11 @@ public class jsonHandler {
         }
     }
 
+    /**
+     * Saves the payload from a github request, stored in localbuilds/{commitHash}/.github_req.json
+     * @param rawGithubRequest payload from github reqeust
+     * @param commitHash has for given commit associated with request
+     */
     public void saveGithubLogs(JsonObject rawGithubRequest, String commitHash){
         String filePath = "localbuilds/" + commitHash + "/.github_req.json";
         try (FileWriter writer = new FileWriter(filePath)) {

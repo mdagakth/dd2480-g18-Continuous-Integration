@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class jsonHandlerTest {
-    //TODO: read db, save db, add build to db, find build;
 
 
     /**
