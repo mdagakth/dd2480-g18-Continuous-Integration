@@ -11,6 +11,14 @@ public class BuildHistory {
     }
 
     /**
+     *
+     * @return The first available ID of builds.
+     */
+    public int getNextBuildID(){
+        return buildHistory.get(buildHistory.size()-1).getBuildID()+1;
+    }
+
+    /**
      * Find a build given its build id, returns null if build is not in build history
      * @param buildID
      * @return build

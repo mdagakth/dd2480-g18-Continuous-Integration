@@ -29,6 +29,9 @@ public class RequestHandlerTest {
 		RepositoryService rs = new RepositoryService(client); // get repo service
 		CommitService cs = new CommitService(client);*/
 		JsonObject jsonObject = new JsonObject();
+		jsonHandler.local = false;
+		ContinuousIntegrationServer.json = new jsonHandler("src/test/resources/BuildHistoryDBTEST.json");
+		ContinuousIntegrationServer.db  = ContinuousIntegrationServer.json.readBuildHistory();
 		try {
 			JsonParser parser = new JsonParser();
 			JsonElement jsonElement = parser.parse(new FileReader("src/test/java/testdatacommit.json"));
@@ -37,6 +40,11 @@ public class RequestHandlerTest {
 
 		RequestHandler handler = new RequestHandler();
 		handler.data = jsonObject.toString();
-		handler.run();
+		handler.start();
+		try {
+			handler.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
