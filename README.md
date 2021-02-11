@@ -90,3 +90,66 @@ We would like to thank the teachers and TAs of the course DD2480 - Software Engi
 
 
 # List of Contributions
+
+## David Yu
+#### Features
+
+#### Refactoring
+
+#### Documentation
+
+#### Reviews
+
+
+## Kalle Pettersson
+#### Features
+- [x] TravisCI 
+- [x] Created Github organisation
+- [x] Created features associated with reading and saving database persistantly 
+- [x] Object representation of database 
+#### Refactoring
+- [x] Combining all parts in the end (with all)
+#### Documentation
+- [x] README file
+- [x] Put together list of contributions
+- [x] API wiki (with david)
+#### Reviews
+- Pull Request #24
+#### Group coordinator
+- [x] Small admin related tasks as group coordinator 
+
+
+## Lukas Gutenberg
+#### Features
+#### Refactoring
+#### Reviews
+
+
+## Martin Falke
+#### Features
+- [x] TravisCI and Maven setup for project
+- [x] LIC6
+#### Refactoring
+- [x] LIC4 copy to main structure
+- [x] LIC9 copy to main structure, debug prints removed
+- [x] FUV copy to main structure, compilation errors fixed
+- [x] LIC12 debug prints removed
+- [x] ~~LIC3 refactor and copy to main structure~~ *(Duplicate work)*
+#### Documentation
+- [x] Instructions in README.md on how to use Maven/TravisCI
+- [x] TODO checklist as an overview of integration
+- [x] Set up basic format for and paste together this list of contributions
+#### Reviews
+- Pull Request #57 (with Kalle)
+- Pull Request #66
+#### Group coordinator
+- [x] Set up of discord with channels/links/etc.
+- [x] Tracking tasks and delegating towards end
+## Oscar Lindgren
+#### Features
+
+#### Refactoring
+#### Reviews
+
+#### Setup
+
